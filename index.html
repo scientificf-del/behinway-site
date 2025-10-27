@@ -1,0 +1,636 @@
+﻿<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بهین وی | مشاوره تحول سازمانی و کوچینگ مدیران</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css">
+    <style>
+        :root {
+            --primary: #4A2C8B;
+            --secondary: #7B52AB;
+            --accent: #FFD700;
+            --dark: #2D1B69;
+            --light: #F8F9FA;
+            --text: #212529;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary), var(--dark));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* هدر پویا */
+        header {
+            background: var(--gradient);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            color: var(--white);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(74, 44, 139, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header.scrolled {
+            padding: 0.5rem 0;
+            backdrop-filter: blur(10px);
+            background: rgba(74, 44, 139, 0.95);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .logo a {
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-left: 0.5rem;
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+            position: relative;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* هیرو سکشن */
+        .hero {
+            background: var(--gradient) fixed;
+            color: var(--white);
+            text-align: center;
+            padding: 12rem 2rem 8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+            animation: fadeInUp 1s ease 0.4s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            background-color: var(--white);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.5);
+        }
+
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .cta-button:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* سکشن‌ها */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--primary);
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        /* خدمات */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: 1px solid rgba(123, 82, 171, 0.1);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 0;
+            background: var(--gradient);
+            opacity: 0.05;
+            transition: height 0.4s ease;
+            z-index: -1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(74, 44, 139, 0.15);
+        }
+
+        .service-card:hover::before {
+            height: 100%;
+        }
+
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .service-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .service-card p {
+            color: var(--text);
+            opacity: 0.9;
+        }
+
+        /* درباره */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            background: var(--gradient);
+            border-radius: 20px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+            box-shadow: 0 15px 30px rgba(74, 44, 139, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3') center/cover;
+            opacity: 0.2;
+        }
+
+        .about-text ul {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .about-text li {
+            margin-bottom: 1rem;
+            padding-right: 2rem;
+            position: relative;
+        }
+
+        .about-text li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            top: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        /* تماس */
+        #contact {
+            background: var(--gradient);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3') center/cover;
+            opacity: 0.1;
+        }
+
+        #contact .section-title {
+            color: var(--white);
+        }
+
+        #contact .section-title::after {
+            background: var(--accent);
+        }
+
+        .contact-info {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin: 0 0.5rem;
+        }
+
+        .contact-info a:hover {
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .contact-info i {
+            margin-left: 0.5rem;
+        }
+
+        /* انیمیشن‌ها */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* فوتر */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        /* ریسپانسیو */
+        @media (max-width: 968px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+            }
+
+            .nav-links {
+                margin-top: 1rem;
+            }
+
+            .nav-links li {
+                margin: 0 0.8rem;
+            }
+
+            .hero {
+                padding: 10rem 1.5rem 6rem;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .section {
+                padding: 4rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- هدر -->
+    <header id="main-header">
+        <nav class="nav-container">
+            <div class="logo">
+                <a href="#"><i class="fas fa-rocket"></i>بهین وی</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">خانه</a></li>
+                <li><a href="#services">خدمات</a></li>
+                <li><a href="#about">درباره من</a></li>
+                <li><a href="#contact">تماس</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- هیرو -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>تحول سازمانی با راهکارهای هوشمند</h1>
+            <p>با بیش از ۲۵ سال تجربه در عارضه‌یابی، مشاوره و کوچینگ، مسیر رشد و تعالی کسب‌وکار شما را هموار می‌سازیم</p>
+            <a href="#contact" class="cta-button">
+                <i class="fas fa-calendar-check"></i> درخواست جلسه مشاوره رایگان
+            </a>
+        </div>
+    </section>
+
+    <!-- خدمات -->
+    <section id="services" class="section">
+        <h2 class="section-title">خدمات تخصصی ما</h2>
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <i class="fas fa-search-plus"></i>
+                <h3>عارضه‌یابی هوشمند</h3>
+                <p>تشخیص و کشف مشکلات ریشه‌ای در سیستم‌ها و فرآیندهای سازمانی با استفاده از روش‌های پیشرفته تحلیل</p>
+            </div>
+            <div class="service-card fade-in">
+                <i class="fas fa-chess-knight"></i>
+                <h3>طراحی راهبردی</h3>
+                <p>تبدیل بینش و ایده‌های کلان به برنامه‌های عملیاتی و راهبردی برای دستیابی به اهداف سازمانی</p>
+            </div>
+            <div class="service-card fade-in">
+                <i class="fas fa-tasks"></i>
+                <h3>اجرای قدرتمند</h3>
+                <p>همراهی و پایش در مرحله اجرای طرح‌ها برای اطمینان از دستیابی به نتایج مورد انتظار</p>
+            </div>
+            <div class="service-card fade-in">
+                <i class="fas fa-user-tie"></i>
+                <h3>کوچینگ مدیران</h3>
+                <p>پرورش و توسعه قابلیت‌های رهبری و مدیریتی در سطوح عالی سازمان برای هدایت مؤثر تحول</p>
+            </div>
+            <div class="service-card fade-in">
+                <i class="fas fa-cogs"></i>
+                <h3>سیستم‌های خودگردان</h3>
+                <p>طراحی و استقرار سیستم‌هایی که کسب‌وکار شما را به سمت خودکارسازی و خودگردانی سوق می‌دهد</p>
+            </div>
+            <div class="service-card fade-in">
+                <i class="fas fa-chart-line"></i>
+                <h3>تعالی مستمر</h3>
+                <p>حرکت به سمت ساختارهای چابک و یادگیرنده برای حفظ مزیت رقابتی در محیط پویای کسب‌وکار</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- درباره -->
+    <section id="about" class="section">
+        <h2 class="section-title">درباره بهین وی</h2>
+        <div class="about-content">
+            <div class="about-image fade-in">
+                <span>تصویر مشاور</span>
+            </div>
+            <div class="about-text fade-in">
+                <p>با گذشت بیش از <strong>دو دهه</strong> تجربه ارزشمند در جایگاه مدیر ارشد، مشاور و مدرس دانشگاه، مأموریت خود را هدایت سازمان‌ها و افراد در مسیر رشد و تحولی پایدار می‌دانم.</p>
+                <ul>
+                    <li>بیش از ۲۰ سال تدریس در دانشگاه‌های معتبر</li>
+                    <li>تجربه مدیریت ارشد و مشاوره در سازمان‌های تولیدی و خدماتی</li>
+                    <li>کوچینگ و منتورینگ مدیران برای ارتقای توانایی‌های رهبری</li>
+                    <li>عارضه‌یابی و ارائه طرح‌های تحول برای سازمان‌های مختلف</li>
+                </ul>
+                <p>رویکرد من در مشاوره، ترکیبی از <strong>دانش آکادمیک به روز</strong> و <strong>تجربیات عملی</strong> در محیط‌های واقعی کسب‌وکار است.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- تماس -->
+    <section id="contact" class="section">
+        <h2 class="section-title">آماده تحول هستید؟</h2>
+        <p style="font-size: 1.3rem; margin-bottom: 3rem; position: relative; z-index: 1;">برای دریافت مشاوره رایگان اولیه یا پرسش سوالات خود با من در ارتباط باشید.</p>
+        <div class="contact-info">
+            <p>
+                <a href="tel:09123817925"><i class="fas fa-phone"></i>۰۹۱۲۳۸۱۷۹۲۵</a>
+            </p>
+            <p>
+                <a href="mailto:scientificf@gmail.com"><i class="fas fa-envelope"></i>scientificf@gmail.com</a>
+            </p>
+            <p>
+                <a href="http://behinway.ir"><i class="fas fa-globe"></i>www.behinway.ir</a>
+            </p>
+        </div>
+        <a href="mailto:scientificf@gmail.com?subject=درخواست جلسه مشاوره از سایت بهین وی" class="cta-button">
+            <i class="fas fa-paper-plane"></i> ارسال ایمیل
+        </a>
+    </section>
+
+    <!-- فوتر -->
+    <footer>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-telegram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>کلیه حقوق مادی و معنوی این سایت متعلق به <strong>بهین وی</strong> می‌باشد. © ۱۴۰۳</p>
+    </footer>
+
+    <!-- اسکریپت برای انیمیشن‌ها -->
+    <script>
+        // انیمیشن اسکرول هدر
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // انیمیشن ظاهر شدن المان‌ها هنگام اسکرول
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const appearOnScroll = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        fadeElements.forEach(element => {
+            appearOnScroll.observe(element);
+        });
+    </script>
+</body>
+</html>
